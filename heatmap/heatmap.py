@@ -358,6 +358,8 @@ def rgb_fn(palette, min_z, max_z):
     "palette is a list of tuples, returns a function of z"
     def rgb_inner(z):
         tone = (z - min_z) / (max_z - min_z)
+	if tone > 1:
+		tone = 1
         tone_scaled = int(tone * (len(palette)-1))
         return palette[tone_scaled]
     return rgb_inner
